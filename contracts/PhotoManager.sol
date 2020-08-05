@@ -1,4 +1,4 @@
-pragma solidity >=0.4.21 <0.7.0;
+pragma solidity ^0.6.0;
 
 import './Ownable.sol';
 import './LicensePayment.sol';
@@ -83,7 +83,8 @@ contract PhotoManager is Ownable{
     }
 
     function getBalance() public view onlyOwner returns(uint) {
-        return address(this).balance;
+        uint balance = address(this).balance;
+        return balance;
     }
 
 }
