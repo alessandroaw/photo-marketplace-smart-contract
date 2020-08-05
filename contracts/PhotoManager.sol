@@ -23,7 +23,7 @@ contract PhotoManager is Ownable{
     event LicensingProcess(
         bytes32 imageHash,
         uint licenseIndex,
-        address client,
+        address clientAddress,
         bool paid,
         address paymentAddress
     );
@@ -71,8 +71,8 @@ contract PhotoManager is Ownable{
             photos[_imageHash].imageHash,
             _index,
             photos[_imageHash].licenses[_index].client,
-            photos[_imageHash].licenses[photos[_imageHash].index].paid,
-            address(photos[_imageHash].licenses[photos[_imageHash].index].licensePayment)
+            photos[_imageHash].licenses[_index].paid,
+            address(photos[_imageHash].licenses[_index].licensePayment)
         );
     }
 
