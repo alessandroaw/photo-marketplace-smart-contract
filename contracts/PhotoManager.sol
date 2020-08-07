@@ -28,19 +28,14 @@ contract PhotoManager is Ownable{
         address paymentAddress
     );
 
-    // development purpose event
-    event Key(bytes32 imageHash);
-
     constructor(address _photographer) public onlyOwner {
         transferOwnership(_photographer);
     }
 
     // Create Photo
-    function createPhoto(string memory dummyImage, uint _priceInWei) public onlyOwner {
-        bytes32 key = keccak256(bytes(dummyImage));
-        photos[key].imageHash = key;
-        photos[key].priceInWei = _priceInWei;
-        emit Key(key);
+    function createPhoto(bytes32 _imageHash, uint _priceInWei) public onlyOwner {
+        photos[_imageHash].imageHash = _imageHash;
+        photos[_imageHash].priceInWei = _priceInWei;
     }
 
     // Order Request for License
