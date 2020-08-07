@@ -18,7 +18,7 @@ contract LicensePayment {
     }
     
     receive() external payable {
-        require(msg.value == priceInWei, "Partial payments is not supported");
+        // require(msg.value == priceInWei, "Partial payments is not supported");
         require(paidWei == 0, "License already paid");
         paidWei += msg.value;
         parentContract.triggerPayment.value(msg.value)(imageHash, index);
