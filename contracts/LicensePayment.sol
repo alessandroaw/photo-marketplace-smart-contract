@@ -1,4 +1,4 @@
-pragma solidity >=0.4.21 <0.7.0;
+pragma solidity ^0.6.0;
 
 import './PhotoManager.sol';
 
@@ -17,8 +17,8 @@ contract LicensePayment {
         index = _index;
     }
     
-    function() external payable {
-        require(msg.value == priceInWei, "Partial payments is not supported");
+    receive() external payable {
+        // require(msg.value == priceInWei, "Partial payments is not supported");
         require(paidWei == 0, "License already paid");
         paidWei += msg.value;
         parentContract.triggerPayment.value(msg.value)(imageHash, index);
