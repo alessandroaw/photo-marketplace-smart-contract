@@ -13,8 +13,8 @@ contract AccountManager {
     }
 
     event PhotographerListing(
-        address listedPhotographer,
-        address PhotoManager,
+        address photographerAddress,
+        address photoManager,
         uint index
     );
 
@@ -32,7 +32,6 @@ contract AccountManager {
             index
         );
 
-        // return address(listedPhotographers[_photographer].photoManager);
     }
 
     function getIndex() public view returns(uint) {

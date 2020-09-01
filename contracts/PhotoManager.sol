@@ -18,8 +18,14 @@ contract PhotoManager is Ownable{
         address client;
     }
 
-   mapping(bytes32 => Photo) photos;
+    mapping(bytes32 => Photo) photos;
 
+    event PhotoCreated(
+        address owner,
+        bytes32 imageHash,
+        uint priceInWei
+    );
+    
     event LicensingProcess(
         bytes32 imageHash,
         uint licenseIndex,
@@ -36,6 +42,8 @@ contract PhotoManager is Ownable{
     function createPhoto(bytes32 _imageHash, uint _priceInWei) public onlyOwner {
         photos[_imageHash].imageHash = _imageHash;
         photos[_imageHash].priceInWei = _priceInWei;
+
+        emit PhotoCreated(owner(), _imageHash, _priceInWei);
     }
 
     // Order Request for License
